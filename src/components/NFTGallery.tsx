@@ -9,7 +9,9 @@ import {
 } from "@/components/ui/dialog";
 import NFTGallerySkeleton from "./NFTGallerySkeleton";
 import { Button } from "@/components/ui/button";
-import { Wallet } from "lucide-react";
+import { Wallet, Search } from "lucide-react";
+import ViewModeButtons from "./ViewModeButtons";
+import { Input } from "@/components/ui/input";
 
 interface NFTGalleryProps {
   tokenMetadataNFTs: NFT[];
@@ -26,6 +28,7 @@ export default function NFTGallery({
 }: NFTGalleryProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>("large");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (
@@ -54,6 +57,25 @@ export default function NFTGallery({
   return (
     <div className="p-4">
       <div className="flex justify-between items-center w-full">
+        <ViewModeButtons viewMode={viewMode} setViewMode={setViewMode} />
+
+        {/* Search bar */}
+        <div className="flex items-center w-1/2 mx-1">
+          <Input
+            placeholder="Search NFTs..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full rounded-r-none"
+          />
+          <Button
+            variant="outline"
+            size="icon"
+            className="rounded-l-none border-l-0 bg-transparent"
+          >
+            <Search className="h-5 w-5" />
+          </Button>
+        </div>
+
         {/* Dialog Trigger for NFT Minter */}
         <Dialog>
           <DialogTrigger asChild>
