@@ -1,8 +1,29 @@
 "use client";
 
+import NFTGallery from "@/components/NFTGallery";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useEffect, useState } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { fetchTokenMetadataAssets } from "@/lib/fetchTokenMetadataAssets";
+import { fetchCoreAssets } from "@/lib/fetchCoreAssets";
+import { NFT } from "@/types/NFT";
 
 export default function Home() {
+  const { publicKey, wallet } = useWallet();
+  const [tokenMetadataAssets, setTokenMetadataAssets] = useState<NFT[]>([]);
+  const [coreAssets, setCoreAssets] = useState<NFT[]>([]);
+
+  useEffect(() => {
+    if (wallet && publicKey) {
+      // Fetch Token Metadata NFTs
+      fetchTokenMetadataAssets(publicKey, wallet.adapter).then(
+        setTokenMetadataAssets
+      );
+      // Fetch Core Assets
+      fetchCoreAssets(publicKey, wallet.adapter).then(setCoreAssets);
+    }
+  }, [wallet, publicKey]);
+
   return (
     <div>
       <header className="flex items-center justify-between w-full">
@@ -15,6 +36,15 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      <div className="container mx-auto py-3">
+        {/* NFT Gallery */}
+        <NFTGallery
+          tokenMetadataNFTs={tokenMetadataAssets}
+          coreAssets={coreAssets}
+          isWalletConnected={!!wallet && !!publicKey}
+        />
+      </div>
     </div>
   );
 }
