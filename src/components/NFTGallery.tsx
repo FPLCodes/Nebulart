@@ -12,6 +12,13 @@ import { Button } from "@/components/ui/button";
 import { Wallet, Search } from "lucide-react";
 import ViewModeButtons from "./ViewModeButtons";
 import { Input } from "@/components/ui/input";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
+import NFTCard from "./NFTCard/NFTCard";
 
 interface NFTGalleryProps {
   tokenMetadataNFTs: NFT[];
@@ -29,6 +36,9 @@ export default function NFTGallery({
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>("large");
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredTokenMetadataNFTs, setFilteredTokenMetadataNFTs] =
+    useState(tokenMetadataNFTs);
+  const [filteredCoreAssets, setFilteredCoreAssets] = useState(coreAssets);
 
   useEffect(() => {
     if (
@@ -38,6 +48,21 @@ export default function NFTGallery({
       setIsLoading(false);
     }
   }, [isWalletConnected, tokenMetadataNFTs, coreAssets]);
+
+  useEffect(() => {
+    const lowerCaseQuery = searchQuery.toLowerCase();
+
+    setFilteredTokenMetadataNFTs(
+      tokenMetadataNFTs.filter((nft) =>
+        nft.name.toLowerCase().includes(lowerCaseQuery)
+      )
+    );
+    setFilteredCoreAssets(
+      coreAssets.filter((nft) =>
+        nft.name.toLowerCase().includes(lowerCaseQuery)
+      )
+    );
+  }, [searchQuery, tokenMetadataNFTs, coreAssets]);
 
   if (!isWalletConnected) {
     return (
@@ -53,6 +78,17 @@ export default function NFTGallery({
   if (isLoading) {
     return <NFTGallerySkeleton viewMode={viewMode} />;
   }
+
+  const getGridClasses = () => {
+    switch (viewMode) {
+      case "large":
+        return "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4";
+      case "small":
+        return "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3";
+      case "list":
+        return "grid-cols-1 gap-2";
+    }
+  };
 
   return (
     <div className="p-4">
@@ -90,6 +126,48 @@ export default function NFTGallery({
           </DialogContent>
         </Dialog>
       </div>
+
+      {/* Accordion for Token Metadata NFTs and Core Assets */}
+      <Accordion
+        type="multiple"
+        defaultValue={["token-metadata", "core-assets"]}
+      >
+        <AccordionItem value="token-metadata">
+          <AccordionTrigger className="text-lg font-semibold">
+            <div className="flex space-x-1.5 items-center">
+              <p>Token Metadata NFTs</p>
+              <p className="bg-muted px-1 rounded-sm">
+                {filteredTokenMetadataNFTs.length}
+              </p>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className={`grid ${getGridClasses()}`}>
+              {filteredTokenMetadataNFTs.map((nft) => (
+                <NFTCard key={nft.mintAddress} nft={nft} viewMode={viewMode} />
+              ))}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="core-assets">
+          <AccordionTrigger className="text-lg font-semibold">
+            <div className="flex space-x-1.5 items-center">
+              <p>Core Assets</p>
+              <p className="bg-muted px-1 rounded-sm">
+                {filteredCoreAssets.length}
+              </p>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className={`grid ${getGridClasses()}`}>
+              {filteredCoreAssets.map((nft) => (
+                <NFTCard key={nft.mintAddress} nft={nft} viewMode={viewMode} />
+              ))}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
   );
 }
