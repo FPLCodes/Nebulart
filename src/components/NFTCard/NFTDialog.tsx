@@ -9,6 +9,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { NFT } from "@/types/NFT";
 import NFTDetailsTab from "./NFTDetailsTab";
+import NFTMetadataTab from "./NFTMetadataTab";
 
 interface NFTDialogProps {
   nft: NFT;
@@ -62,7 +63,7 @@ export default function NFTDialog({ nft }: NFTDialogProps) {
           <NFTDetailsTab nft={nft} />
         </TabsContent>
         <TabsContent value="metadata" className="flex-grow">
-          {/* <NFTMetadataTab nft={nft} /> */}
+          <NFTMetadataTab nft={nft} />
         </TabsContent>
       </Tabs>
     </DialogContent>
