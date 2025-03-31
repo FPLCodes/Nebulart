@@ -11,6 +11,7 @@ import {
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { NFT } from "@/types/NFT";
+import NFTDialog from "./NFTDialog";
 
 interface NFTCardProps {
   nft: NFT;
@@ -124,6 +125,7 @@ export default function NFTCard({ nft, viewMode }: NFTCardProps) {
           </Card>
         </motion.div>
       </DialogTrigger>
+      <NFTDialog nft={nft} />
     </Dialog>
   );
 }
