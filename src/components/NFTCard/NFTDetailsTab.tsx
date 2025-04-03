@@ -5,6 +5,13 @@ import { Copy, Check, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useWallet } from "@solana/wallet-adapter-react";
+import BurnButton from "./BurnButton";
+import TransferButton from "./TransferButton";
+import EditButton from "./EditButton";
+import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
+import { mplTokenMetadata } from "@metaplex-foundation/mpl-token-metadata";
+import { mplCore } from "@metaplex-foundation/mpl-core";
+import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
 
 interface NFTDetailsTabProps {
   nft: NFT;
@@ -17,6 +24,11 @@ export default function NFTDetailsTab({ nft }: NFTDetailsTabProps) {
   if (!wallet) {
     return null;
   }
+
+  const umi = createUmi("https://api.devnet.solana.com")
+    .use(mplTokenMetadata())
+    .use(mplCore())
+    .use(walletAdapterIdentity(wallet.adapter));
 
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(nft.mintAddress);
@@ -90,6 +102,14 @@ export default function NFTDetailsTab({ nft }: NFTDetailsTabProps) {
             <p className="text-sm text-muted-foreground">No attributes found</p>
           )}
         </ScrollArea>
+        <div
+          className="flex items-center justify-center space-x-6"
+          style={{ height: "30%" }}
+        >
+          <BurnButton nft={nft} umi={umi} owner={wallet?.adapter} />
+          <TransferButton nft={nft} umi={umi} owner={wallet?.adapter} />
+          <EditButton nft={nft} umi={umi} />
+        </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { WalletProviderWrapper } from "@/components/WalletProviderWrapper";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <WalletProviderWrapper>{children}</WalletProviderWrapper>
+        <Toaster />
       </body>
     </html>
   );
