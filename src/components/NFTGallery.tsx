@@ -19,6 +19,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import NFTCard from "./NFTCard/NFTCard";
+import NFTMinter from "./NFTMinter/NFTMinter";
 
 interface NFTGalleryProps {
   tokenMetadataNFTs: NFT[];
@@ -123,6 +124,7 @@ export default function NFTGallery({
             <DialogHeader>
               <DialogTitle hidden={true}>Mint a New NFT</DialogTitle>
             </DialogHeader>
+            <NFTMinter />
           </DialogContent>
         </Dialog>
       </div>
