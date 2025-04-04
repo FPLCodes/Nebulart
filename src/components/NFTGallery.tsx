@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/accordion";
 import NFTCard from "./NFTCard/NFTCard";
 import NFTMinter from "./NFTMinter/NFTMinter";
+import { InteractiveHoverButton } from "./magicui/interactive-hover-button";
 
 interface NFTGalleryProps {
   tokenMetadataNFTs: NFT[];
@@ -116,9 +117,9 @@ export default function NFTGallery({
         {/* Dialog Trigger for NFT Minter */}
         <Dialog>
           <DialogTrigger asChild>
-            <Button className="cursor-pointer">
-              <p>Mint NFT</p>
-            </Button>
+            <InteractiveHoverButton className="cursor-pointer">
+              Mint NFT
+            </InteractiveHoverButton>
           </DialogTrigger>
           <DialogContent className="px-2 pt-0 pb-0.5 bg-secondary/50 backdrop-blur-md">
             <DialogHeader>
