@@ -7,7 +7,7 @@ import { fetchCoreAssets } from "@/lib/fetchCoreAssets";
 import NFTGallery from "@/components/NFTGallery";
 import { NFT } from "@/types/NFT";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import Image from "next/image";
+import { Particles } from "@/components/magicui/particles";
 
 export default function Home() {
   const { publicKey, wallet } = useWallet();
@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <div>
       <header className="flex items-center justify-between w-full">
-        <div className="w-full flex justify-between px-4 md:px-12 py-2 mx-auto bg-gradient-to-br from-primary/20 to-secondary/50">
+        <div className="relative z-10 w-full flex justify-between px-4 md:px-12 py-2 mx-auto bg-gradient-to-br from-primary/20 to-secondary/50 backdrop-blur">
           <div className="flex items-center space-x-3 container">
             <h1 className="text-xl font-semibold">Nebulart</h1>
           </div>
@@ -45,6 +45,13 @@ export default function Home() {
           isWalletConnected={!!wallet && !!publicKey}
         />
       </div>
+
+      <Particles
+        className="absolute inset-0 z-0"
+        quantity={100}
+        ease={80}
+        refresh
+      />
     </div>
   );
 }

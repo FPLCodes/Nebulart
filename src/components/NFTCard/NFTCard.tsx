@@ -117,7 +117,7 @@ export default function NFTCard({ nft, viewMode }: NFTCardProps) {
             {viewMode !== "list" && (
               <CardFooter className="bg-muted/50 p-2 flex justify-between items-center">
                 <p className="text-xs text-muted-foreground font-mono">
-                  ID: {nft.mintAddress.slice(0, 6)}...
+                  ID: {nft.mintAddress.slice(0, 8)}...
                 </p>
                 <div className="h-4 w-4 rounded-full bg-gradient-to-r from-primary to-secondary animate-pulse" />
               </CardFooter>
