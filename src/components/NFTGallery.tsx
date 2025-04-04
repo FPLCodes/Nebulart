@@ -116,7 +116,7 @@ export default function NFTGallery({
         {/* Dialog Trigger for NFT Minter */}
         <Dialog>
           <DialogTrigger asChild>
-            <Button>
+            <Button className="cursor-pointer">
               <p>Mint NFT</p>
             </Button>
           </DialogTrigger>

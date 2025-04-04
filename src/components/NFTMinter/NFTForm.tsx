@@ -61,7 +61,7 @@ export default function NFTForm({
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-3 gap-x-2">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
         <Button
           onClick={() => setTokenStandard("Metadata")}
           disabled={!publicKey}
