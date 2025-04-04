@@ -32,7 +32,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <WalletProviderWrapper>{children}</WalletProviderWrapper>
-        <Toaster />
+        <Toaster richColors closeButton />
       </body>
     </html>
   );

@@ -61,11 +61,11 @@ export default function NFTForm({
 
   return (
     <div className="space-y-4">
-      <div className="flex space-x-2 justify-between">
+      <div className="grid grid-cols-3 gap-x-2">
         <Button
           onClick={() => setTokenStandard("Metadata")}
           disabled={!publicKey}
-          className={`w-full ${
+          className={`${
             tokenStandard === "Metadata"
               ? "bg-primary text-primary-foreground hover:bg-primary-dark"
               : "bg-secondary text-secondary-foreground hover:bg-secondary-dark"
@@ -76,7 +76,7 @@ export default function NFTForm({
         <Button
           onClick={() => setTokenStandard("Core")}
           disabled={!publicKey}
-          className={`w-full ${
+          className={`${
             tokenStandard === "Core"
               ? "bg-primary text-primary-foreground hover:bg-primary-dark"
               : "bg-secondary text-secondary-foreground hover:bg-secondary-dark"
@@ -87,7 +87,7 @@ export default function NFTForm({
         <Button
           onClick={() => setTokenStandard("Token-2022")}
           disabled={!publicKey}
-          className={`w-full ${
+          className={`${
             tokenStandard === "Token-2022"
               ? "bg-primary text-primary-foreground hover:bg-primary-dark"
               : "bg-secondary text-secondary-foreground hover:bg-secondary-dark"
