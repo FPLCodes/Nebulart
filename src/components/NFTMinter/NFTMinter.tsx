@@ -177,6 +177,18 @@ export default function NFTMinter() {
       toast.success("NFT minted successfully!", {
         description: `Mint address: ${assetOrMint.publicKey}`,
       });
+      toast.success(
+        <div>
+          <a
+            href={transactionLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "blue", textDecoration: "underline" }}
+          >
+            View Transaction
+          </a>
+        </div>
+      );
 
       setName("");
       setSymbol("");
