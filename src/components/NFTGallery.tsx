@@ -98,19 +98,19 @@ export default function NFTGallery({
         <ViewModeButtons viewMode={viewMode} setViewMode={setViewMode} />
 
         {/* Search bar */}
-        <div className="flex items-center w-1/2 mx-1">
+        <div className="flex items-center w-1/2 mx-1 rounded-full shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]">
           <Input
             placeholder="Search NFTs..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-r-none"
+            className="w-full rounded-r-none border-0 ring-0 focus-visible:ring-offset-0 focus-visible:ring-0"
           />
           <Button
             variant="outline"
             size="icon"
-            className="rounded-l-none border-l-0 bg-transparent"
+            className="rounded-l-none rounded-full border-l-0 bg-transparent border-0 hover:bg-transparent ="
           >
-            <Search className="h-5 w-5" />
+            <Search className="h-5 w-5 " />
           </Button>
         </div>
 
