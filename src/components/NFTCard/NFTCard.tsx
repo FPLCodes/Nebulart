@@ -65,7 +65,7 @@ export default function NFTCard({ nft, viewMode }: NFTCardProps) {
           onMouseLeave={() => setHovered(false)}
         >
           <Card
-            className={`group overflow-hidden transition-all duration-300 bg-card/70 border-none hover:shadow-lg cursor-pointer ${
+            className={`group overflow-hidden transition-all duration-300 bg-card/70 border-none hover:shadow-lg cursor-pointer pb-0 pt-0 gap-0 ${
               hovered ? "shadow-2xl" : ""
             } ${getCardClasses()}`}
           >

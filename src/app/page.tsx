@@ -1,12 +1,13 @@
 "use client";
 
-import NFTGallery from "@/components/NFTGallery";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useEffect, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { fetchTokenMetadataAssets } from "@/lib/fetchTokenMetadataAssets";
 import { fetchCoreAssets } from "@/lib/fetchCoreAssets";
+import NFTGallery from "@/components/NFTGallery";
 import { NFT } from "@/types/NFT";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import Image from "next/image";
 
 export default function Home() {
   const { publicKey, wallet } = useWallet();
@@ -38,7 +39,6 @@ export default function Home() {
       </header>
 
       <div className="container mx-auto py-3">
-        {/* NFT Gallery */}
         <NFTGallery
           tokenMetadataNFTs={tokenMetadataAssets}
           coreAssets={coreAssets}

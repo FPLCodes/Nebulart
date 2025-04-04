@@ -28,11 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-primary/10 to-secondary/10 min-h-full bg-fixed bg-cover`}
         suppressHydrationWarning
       >
-        <WalletProviderWrapper>{children}</WalletProviderWrapper>
-        <Toaster richColors closeButton />
+        <WalletProviderWrapper>
+          {children}
+          <Toaster richColors closeButton />
+        </WalletProviderWrapper>
       </body>
     </html>
   );

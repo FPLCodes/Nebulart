@@ -117,10 +117,10 @@ export default function NFTGallery({
         <Dialog>
           <DialogTrigger asChild>
             <Button>
-              <p>Mint New NFT</p>
+              <p>Mint NFT</p>
             </Button>
           </DialogTrigger>
-          <DialogContent className="px-2 pt-0 pb-0.5 bg-secondary/50 backdrop-blur-md">
+          <DialogContent className="px-2 pt-0 pb-0.5 bg-secondary/50 backdrop-blur-mad">
             <DialogHeader>
               <DialogTitle hidden={true}>Mint a New NFT</DialogTitle>
             </DialogHeader>
