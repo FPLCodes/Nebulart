@@ -8,6 +8,7 @@ import NFTGallery from "@/components/NFTGallery";
 import { NFT } from "@/types/NFT";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { Particles } from "@/components/magicui/particles";
+import { SparklesText } from "@/components/magicui/sparkles-text";
 
 export default function Home() {
   const { publicKey, wallet } = useWallet();
@@ -30,7 +31,11 @@ export default function Home() {
       <header className="flex items-center justify-between w-full">
         <div className="relative z-10 w-full flex justify-between px-4 md:px-12 py-2 mx-auto bg-gradient-to-br from-primary/20 to-secondary/50 backdrop-blur">
           <div className="flex items-center space-x-3 container">
-            <h1 className="text-xl font-semibold">Nebulart</h1>
+            <SparklesText
+              text="Nebulart"
+              className="text-2xl"
+              sparklesCount={5}
+            />
           </div>
           <div>
             <WalletMultiButton />

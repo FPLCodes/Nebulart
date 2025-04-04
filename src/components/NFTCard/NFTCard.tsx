@@ -94,24 +94,6 @@ export default function NFTCard({ nft, viewMode }: NFTCardProps) {
                     Symbol: {nft.symbol || "N/A"}
                   </p>
                 )}
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <p
-                        className={`text-xs text-muted-foreground ${
-                          viewMode === "list" ? "" : "line-clamp-2"
-                        }`}
-                      >
-                        {nft.metadata?.description || "No description"}
-                      </p>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p className="max-w-xs text-xs">
-                        {nft.metadata?.description || "No description"}
-                      </p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
               </div>
             </CardContent>
             {viewMode !== "list" && (
